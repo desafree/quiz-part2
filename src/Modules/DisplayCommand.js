@@ -1,9 +1,21 @@
 const displayCommand = (function displayCommand() {
   const quizContainer = document.querySelector('.quiz-container');
 
+  function displayLoading() {
+    console.log('loading');
+    quizContainer.innerHTML = `
+    <div class="loading-container">
+    <img
+      class="loading"
+      src="https://retchhh.files.wordpress.com/2015/03/loading1.gif"
+    />
+  </div>
+        `;
+  }
+
   function displayGameOver(point) {
     quizContainer.innerHTML = `
-        <h3>you have reach ${point} point</h3>
+        <h3 class="game over">you have reach <span class="point">${point} point<span></h3>
         <button>Try Again</button>
         `;
   }
@@ -27,7 +39,7 @@ const displayCommand = (function displayCommand() {
   ) {
     // console.log(correctCity.capital[0]);
     quizContainer.innerHTML = `
-        <h3 class="question">Which is the capital of ${correctCity.name.common}?</h3>
+        <h3 class="question">Which is the capital of   <span>${correctCity.name.common}</span></h3>
         <ul>
           <li>${capital1}</li>
           <li>${capital2}</li>
@@ -37,7 +49,7 @@ const displayCommand = (function displayCommand() {
         `;
   }
 
-  return { displayCities, displayGameOver };
+  return { displayCities, displayGameOver, displayLoading };
 })();
 
 export default displayCommand;

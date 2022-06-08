@@ -9,11 +9,16 @@ let citiesArray;
 fetchData(API_URL);
 
 async function fetchData(url) {
-  const request = await fetch(url);
-  const data = await request.json();
-  citiesArray = CreateCitiesObj(data);
-  nextRound();
-  addEvent();
+  try {
+    displayCommand.displayLoading();
+    const request = await fetch(url);
+    const data = await request.json();
+    citiesArray = CreateCitiesObj(data);
+    nextRound();
+    addEvent();
+  } catch {
+    console.log('error');
+  }
 }
 
 function nextRound() {
